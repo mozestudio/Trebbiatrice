@@ -48,4 +48,4 @@ Why
 <Cusy> ....
 ```
 
-... and also because half of Moze's developers team forget to track the time. Anna will be happy now.
+... and also because half of Moze's development team forget to track the time. Anna will be happy now.
