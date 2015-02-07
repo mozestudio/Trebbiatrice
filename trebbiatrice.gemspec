@@ -5,10 +5,10 @@ Gem::Specification.new do |s|
   s.version       = Trebbiatrice::VERSION
   s.author        = 'Giovanni Capuano'
   s.email         = 'webmaster@giovannicapuano.net'
-  s.homepage      = 'http://www.giovannicapuano.net'
+  s.homepage      = 'https://github.com/RoxasShadow/Trebbiatrice'
   s.platform      = Gem::Platform::RUBY
-  s.summary       = 'RESTful gem for wrapping Pigro\'s APIs'
-  s.description   = 'RESTful wrapper gem for Pigro\'s APIs'
+  s.summary       = "Track the time on Harvest automatically watching what you're working on."
+  s.description   = "Track the time on Harvest automatically watching what you're working on. So you've just to work without thinking about starting and stopping the tracker."
   s.license       = 'WTFPL'
 
   s.files         = `git ls-files -z`.split("\0")
