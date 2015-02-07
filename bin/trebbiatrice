@@ -1,0 +1,29 @@
+#! /usr/bin/env ruby
+#--
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#                    Version 2, December 2004
+#
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+#
+#  0. You just DO WHAT THE FUCK YOU WANT TO.
+#++
+require 'trebbiatrice'
+
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
+
+login_data = {
+  :subdomain => ENV['TREBBIA_DOMAIN'],
+  :username  => ENV['TREBBIA_MAIL'],
+  :password  => ENV['TREBBIA_PASS']
+}
+
+task      = 'Development'
+frequency = ENV.fetch('TREBBIA_FREQ') { 1 }.to_i
+testata   = {
+  :engine => 'osascript',
+  :name   => File.join(File.dirname(__FILE__), 'testate/osx/sublime.scpt')
+}
+
+Trebbiatrice::Trebbia.new(login_data).run! testata, task, frequency
