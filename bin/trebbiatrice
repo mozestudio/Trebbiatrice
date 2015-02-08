@@ -26,4 +26,4 @@ testata   = {
   :name   => File.join(File.dirname(__FILE__), 'testate/osx/sublime.scpt')
 }
 
-Trebbiatrice::Trebbia.new(login_data).run! testata, task, frequency
+Trebbiatrice.run! login_data, task, testata, frequency

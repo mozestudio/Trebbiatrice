@@ -13,4 +13,5 @@ require 'harvested'
 
 require 'trebbiatrice/harvest.rb'
 require 'trebbiatrice/trebbia.rb'
+require 'trebbiatrice/trebbiatrice.rb'
 require 'trebbiatrice/version.rb'

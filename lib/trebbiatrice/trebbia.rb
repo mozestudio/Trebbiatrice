@@ -10,7 +10,7 @@
 
 module Trebbiatrice
   class Trebbia
-    attr_accessor :working_on
+    attr_accessor :working_on, :project
 
     def initialize(login_data)
       @harvest  = Harvest.new(login_data)
@@ -18,9 +18,11 @@ module Trebbiatrice
       @tracking = false
     end
 
-    def get_task(name)
-      @project = active_projects.last unless @project
+    def active_projects
+      @harvest.projects.select { |project| /#{project[:name]}/i.match(@working_on) }
+    end
 
+    def get_task(name)
       @project.tasks.select { |t| t.name == name }.last
     end
 
@@ -46,42 +48,6 @@ module Trebbiatrice
 
     def tracking?
       !!@tracking
-    end
-
-    def active_projects
-      @harvest.projects.select { |project| /#{project[:name]}/i.match(@working_on) }
-    end
-
-    def run!(task, testata, frequency)
-      last_project, project = nil
-
-      loop do
-        response = Trebbia.invoke!(testata[:engine], testata[:name])
-        @working_on = response[:contents].select do |content|
-          @working_on = content
-          active_projects.any?
-        end.last
-
-        if response[:status] == 'failure' || !@working_on
-          if tracking?
-            p "stopping #{project[:name]}" if project
-            stop_tracking!
-          end
-
-          last_project = nil
-          sleep frequency
-        else
-          if @working_on && (last_project != @working_on || !project)
-            last_project = @working_on
-            track!(task)
-
-            project = active_projects.last
-            p "tracking #{project[:name]}"
-          end
-
-          sleep frequency
-        end
-      end
     end
 
     class << self
