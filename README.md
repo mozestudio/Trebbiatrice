@@ -8,7 +8,7 @@ What do you need
 ----------------
 - Mac OS X (more platforms later)
 - Sublime Text (more editors later)
-- Projects/Workspace matching the ones you've available on Harvest
+- (Projects/Workspace/Files/Folders)'s name matching the ones you've available on Harvest
 
 Installation
 ------------
@@ -21,6 +21,10 @@ export TREBBIA_MAIL='email'
 ```
 
 `$ trebbiatrice`
+
+About Sublime Text
+------------------
+If you do not work with workspaces/projects like I said before, you can add `"show_full_path": true` to your editor's settings. In this way, `trebbiatrice` will try to match the Harvest projects with the name of the folder in which your files your're working on are saved.
 
 TODO
 ----
