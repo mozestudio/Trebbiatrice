@@ -10,6 +10,11 @@
 #++
 require 'trebbiatrice'
 
+abort 'Usage: trebbiatrice [trebbia]' if ARGV.empty?
+
+trebbia = File.join(File.dirname(__FILE__), "testate/osx/#{ARGV.last}.scpt")
+abort "Trebbia #{ARGV.last} does not exist." unless File.exists?(trebbia)
+
 Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 
@@ -21,9 +26,6 @@ login_data = {
 
 task      = 'Development'
 frequency = ENV.fetch('TREBBIA_FREQ') { 1 }.to_i
-testata   = {
-  :engine => 'osascript',
-  :name   => File.join(File.dirname(__FILE__), 'testate/osx/sublime.scpt')
-}
+testata   = { engine: 'osascript', name: trebbia }
 
 Trebbiatrice.run! login_data, task, testata, frequency

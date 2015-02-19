@@ -20,11 +20,19 @@ export TREBBIA_DOMAIN='subdomain'
 export TREBBIA_MAIL='email'
 ```
 
-`$ trebbiatrice`
+`$ trebbiatrice [trebbia]`
 
 About Sublime Text
 ------------------
 If you do not work with workspaces/projects like I said before, you can add `"show_full_path": true` to your editor's settings. In this way, `trebbiatrice` will try to match the Harvest projects with the name of the folder in which your files your're working on are saved.
+
+To track with Sublime Text, just do `$ trebbiatrice sublime`.
+
+About Atom
+----------
+Install the package `custom-title` in Atom and set something like `<%= fileName %><% if (projectPath) { %> - /<%= relativeFilePath %><% } %>` in the custom title. Otherwise just work in the folder with the name of your project.
+
+To track with Atom, the command is `$ trebbiatrice atom`.
 
 TODO
 ----
