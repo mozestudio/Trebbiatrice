@@ -19,7 +19,11 @@ module Trebbiatrice
     end
 
     def active_projects
-      @harvest.projects.select { |project| /#{project[:name]}/i.match(@working_on) }
+      @harvest.projects.select do |project|
+        project_name = project[:name].downcase
+        matches = @working_on.split('/').select { |part| project_name.include?(part.downcase) }
+        matches.reject(&:empty?).any?
+      end
     end
 
     def get_task(name)
