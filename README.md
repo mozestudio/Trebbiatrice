@@ -40,6 +40,7 @@ TODO
 - Run as daemon
 - Logger
 - More testate
+- Resume old timers instead to create new ones
 
 Why
 ---
