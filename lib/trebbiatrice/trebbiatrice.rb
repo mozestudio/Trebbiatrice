@@ -4,6 +4,12 @@ module Trebbiatrice
       trebbia = Trebbia.new(login_data)
       last_project, project = nil
 
+      trap('INT') do
+        puts 'Stopping gracefully the trebbiatrice...'
+        trebbia.stop_tracking! if trebbia.tracking?
+        exit
+      end
+
       loop do
         response = Trebbia.invoke!(testata[:engine], testata[:name])
 
@@ -14,7 +20,7 @@ module Trebbiatrice
 
         if response[:status] == 'failure' || !trebbia.working_on
           if trebbia.tracking?
-            p "stopping #{trebbia.project[:name]}" if trebbia.project
+            puts "stopping #{trebbia.project[:name]}" if trebbia.project
             trebbia.stop_tracking!
           end
 
@@ -25,7 +31,7 @@ module Trebbiatrice
             trebbia.track! task
 
             last_project = trebbia.working_on
-            p "tracking #{trebbia.project[:name]}"
+            puts "tracking #{trebbia.project[:name]}"
           end
         end
 
